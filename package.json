@@ -1,0 +1,27 @@
+{
+  "name": "com.ligofff.lgf-toolbox",
+  "displayName": "Ligofff - LGF Toolbox",
+  "version": "0.1.0",
+  "unity": "2022.2",
+  "description": "Adds abstract logic for toolboxes realization. Toolboxes can contains various useful tools",
+  "keywords": [
+    "unity",
+	"unity3d",
+	"upm",
+    "ligofff",
+    "utility"
+  ],
+  "homepage": "https://github.com/ligofff/lgf-toolbox.git",
+  "bugs": {
+    "url": "https://github.com/ligofff/lgf-toolbox/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ligofff/lgf-toolbox.git"
+  },
+  "license": "MIT",
+  "author": "Ligofff (https://ligofff.com)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
