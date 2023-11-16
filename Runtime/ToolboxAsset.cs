@@ -9,17 +9,20 @@ public class ToolboxAsset : ScriptableObject
 
     private Toolbox _cachedToolbox;
 
-    public Toolbox GetToolbox()
+    public Toolbox Get
     {
-        if (_cachedToolbox != null)
+        get
+        {
+            if (_cachedToolbox != null)
+                return _cachedToolbox;
+            
+            _cachedToolbox = new Toolbox();
+            
+            AddPredefinedTools(_cachedToolbox);
+            AddTools(_cachedToolbox);
+            
             return _cachedToolbox;
-            
-        _cachedToolbox = new Toolbox();
-            
-        AddPredefinedTools(_cachedToolbox);
-        AddTools(_cachedToolbox);
-            
-        return _cachedToolbox;
+        }
     }
 
     public void ResetToolbox()
