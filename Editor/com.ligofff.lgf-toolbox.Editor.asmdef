@@ -1,6 +1,9 @@
 {
     "name": "com.ligofff.lgf-toolbox.Editor",
-    "references": [],
+    "rootNamespace": "",
+    "references": [
+        "GUID:8459a32239191dc4ab1135e88dbed862"
+    ],
     "includePlatforms": [
         "Editor"
     ],
