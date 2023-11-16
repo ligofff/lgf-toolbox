@@ -9,13 +9,13 @@ public class Toolbox
 
     public void Add<T>(T toolInstance) where T : ITool
     {
-        if (_tools.ContainsKey(typeof(T)))
+        if (_tools.ContainsKey(toolInstance.GetType()))
             throw new Exception($"Toolbox already contains a tool of type {typeof(T)}!");
 
-        _tools[typeof(T)] = toolInstance;
+        _tools[toolInstance.GetType()] = toolInstance;
     }
 
-    public void Remove<T>(T toolboxUnit) where T : ITool
+    public void Remove<T>() where T : ITool
     {
         if (!_tools.ContainsKey(typeof(T)))
             throw new Exception($"Toolbox does not contain a tool of type {typeof(T)}!");
