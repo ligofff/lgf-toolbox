@@ -1,6 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
@@ -10,7 +15,7 @@ using Sirenix.OdinInspector;
 public class ToolboxAsset : ScriptableObject
 {
 #if ODIN_INSPECTOR
-    [ValidateInput(nameof(ValidateList), "List contains duplicates!"), ListDrawerSettings(DefaultExpandedState = true)]
+    [ValidateInput(nameof(ValidateList), "List contains duplicates!"), ListDrawerSettings(DefaultExpandedState = true), TypeFilter(nameof(GetTypes))]
 #endif
     [SerializeReference]
     public List<ITool> predefinedTools = new List<ITool>();
@@ -50,9 +55,18 @@ public class ToolboxAsset : ScriptableObject
     {
             
     }
-
+    
+    // Editor things
     private bool ValidateList()
     {
         return predefinedTools.Select(tool => tool.GetType()).Distinct().Count() == predefinedTools.Count;
+    }
+
+    private IEnumerable<Type> GetTypes()
+    {
+#if UNITY_EDITOR
+        return TypeCache.GetTypesDerivedFrom<ITool>().Where(type => !predefinedTools.Any(tool => tool.GetType() == type));
+#endif
+        return Enumerable.Empty<Type>();
     }
 }
