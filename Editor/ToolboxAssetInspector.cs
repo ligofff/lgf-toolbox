@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !ODIN_INSPECTOR
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -98,3 +99,5 @@ namespace DefaultNamespace
         }
     }
 }
+
+#endif

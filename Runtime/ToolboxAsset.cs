@@ -1,9 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#endif
 
 [CreateAssetMenu(fileName = "new Toolbox Asset", menuName = "Ligofff/Toolbox")]
 public class ToolboxAsset : ScriptableObject
 {
+#if ODIN_INSPECTOR
+    [ValidateInput(nameof(ValidateList), "List contains duplicates!"), ListDrawerSettings(DefaultExpandedState = true)]
+#endif
     [SerializeReference]
     public List<ITool> predefinedTools = new List<ITool>();
 
@@ -41,5 +49,10 @@ public class ToolboxAsset : ScriptableObject
     protected virtual void AddTools(Toolbox toolbox)
     {
             
+    }
+
+    private bool ValidateList()
+    {
+        return predefinedTools.Select(tool => tool.GetType()).Distinct().Count() == predefinedTools.Count;
     }
 }
