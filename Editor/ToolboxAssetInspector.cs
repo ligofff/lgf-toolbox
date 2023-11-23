@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace LGF_Toolbox
 {
     [CustomEditor(typeof(ToolboxAsset))]
     public class ToolboxAssetInspector : Editor
