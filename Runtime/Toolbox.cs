@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace LGF_Toolbox
 {
@@ -14,7 +15,15 @@ namespace LGF_Toolbox
             if (_tools.ContainsKey(toolInstance.GetType()))
                 throw new Exception($"Toolbox already contains a tool of type {typeof(T)}!");
 
-            _tools[toolInstance.GetType()] = toolInstance;
+            var toolType = toolInstance.GetType();
+            
+            if (toolType.GetMethod("Init", BindingFlags.Instance | BindingFlags.NonPublic) is {} method)
+            {
+                method.Invoke(toolInstance, null);
+            }
+            
+            _tools[toolType] = toolInstance;
+            
         }
 
         public void Remove<T>() where T : ITool
